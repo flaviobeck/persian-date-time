@@ -85,6 +85,13 @@
         <plugins>
             <!-- Compiler plugin -->
             <plugin>
+              <groupId>org.pitest</groupId>
+              <artifactId>pitest-maven</artifactId>
+              <version>LATEST</version>
+            </plugin>
+
+            <!-- Compiler plugin -->
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.2</version>
                 <configuration>
