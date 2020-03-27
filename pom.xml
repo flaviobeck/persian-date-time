@@ -88,6 +88,10 @@
               <groupId>org.pitest</groupId>
               <artifactId>pitest-maven</artifactId>
               <version>1.5.0</version>
+              <configuration>
+                <fullMutationMatrix>true</fullMutationMatrix>
+                <outputFormats>XML</outputFormats>
+              </configuration>
             </plugin>
 
             <!-- Compiler plugin -->
