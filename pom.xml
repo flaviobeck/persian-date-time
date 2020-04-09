@@ -89,10 +89,7 @@
               <artifactId>pitest-maven</artifactId>
               <version>1.5.0</version>
               <configuration>
-                <outputFormats>
-                  <param>XML</param>
-                  <param>HTML</param>
-                </outputFormats>
+                <fullMutationMatrix>true</fullMutationMatrix>
               </configuration>
             </plugin>
 
