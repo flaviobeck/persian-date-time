@@ -22,7 +22,7 @@ addons:
 
 script: 
     #- mvn cobertura:cobertura
-    - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
+    - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage sonar:sonar
     #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=flaviobeck_persian-date-time
 
 after_success:
