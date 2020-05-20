@@ -26,6 +26,9 @@ deploy:
   file: "FILE TO UPLOAD"
   skip_cleanup: true
   draft: true
+
+notifications:
+  slack: flaviobeck:U6kilEKFzgEH1EYC9JyM0goD
   
 cache:
   directories:
