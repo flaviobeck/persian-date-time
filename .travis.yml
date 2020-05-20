@@ -18,12 +18,13 @@ addons:
   sonarcloud:
     organization: "flaviobeck"
     token:
-      secure: "1ddf995ecc1488d34589454379efbdd0df5dbf2e" # encrypted value of your token
+      secure: "1ddf995ecc1488d34589454379efbdd0df5dbf2e"
 
 script: 
     #- mvn cobertura:cobertura
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=flaviobeck_persian-date-time
+    - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
+    #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=flaviobeck_persian-date-time
 
-#after_success:
-    #- bash <(curl -s https://codecov.io/bash)
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
     
