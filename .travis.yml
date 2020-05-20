@@ -11,6 +11,8 @@ install:
 
 os:
   - linux
+  
+dist: trusty 
 
 script: "mvn cobertura:cobertura"
 
