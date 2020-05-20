@@ -27,7 +27,14 @@ script:
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
-    
+
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  file: "FILE TO UPLOAD"
+  skip_cleanup: true
+  draft: true
+  
 cache:
   directories:
     - $HOME/.m2/repository
