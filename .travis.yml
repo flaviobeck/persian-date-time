@@ -14,16 +14,8 @@ os:
   
 dist: trusty 
 
-addons:
-  sonarcloud:
-    organization: "flaviobeck"
-    token:
-      secure: "b17f40ac4f6bc6f53b52117f22fec88233cffdf5"
-
 script: 
-    #- mvn cobertura:cobertura
     - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
-    #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=flaviobeck_persian-date-time
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
