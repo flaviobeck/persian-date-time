@@ -1,31 +1,22 @@
-language: java
+os: linux
+  
+dist: trusty 
 
 sudo: false
 
-jdk:
-  - oraclejdk8
+language: java
+
+jdk: oraclejdk8
 
 install:
 - mvn -N io.takari:maven:wrapper
 - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
-os:
-  - linux
-  
-dist: trusty 
 
 script: 
     - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
-
-deploy:
-  provider: releases
-  api_key: "GH_TOKEN"
-  file: "FILE TO UPLOAD"
-  skip_cleanup: true
-  draft: true
 
 notifications:
   slack: flaviobeck:U6kilEKFzgEH1EYC9JyM0goD
