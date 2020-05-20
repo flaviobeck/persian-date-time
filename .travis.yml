@@ -21,14 +21,9 @@ addons:
       secure: "travis encrypt 1ddf995ecc1488d34589454379efbdd0df5dbf2e" # encrypted value of your token
 
 script: 
-    - mvn cobertura:cobertura
+    #- mvn cobertura:cobertura
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=flaviobeck_persian-date-time
 
-after_success:
-    - bash <(curl -s https://codecov.io/bash)
+#after_success:
+    #- bash <(curl -s https://codecov.io/bash)
     
-
-#script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=flaviobeck_persian-date-time
-  
-  
