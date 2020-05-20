@@ -14,7 +14,7 @@ install:
 
 script: 
     #- mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
-    - mvn deploy -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage -Dregistry=https://maven.pkg.github.com/flaviobeck -Dtoken=GH_TOKEN
+    - mvn deploy -Dregistry=https://maven.pkg.github.com/flaviobeck -Dtoken=GH_TOKEN
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
