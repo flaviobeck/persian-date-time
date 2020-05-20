@@ -18,7 +18,7 @@ addons:
   sonarcloud:
     organization: "flaviobeck"
     token:
-      secure: "travis encrypt 1ddf995ecc1488d34589454379efbdd0df5dbf2e" # encrypted value of your token
+      secure: "1ddf995ecc1488d34589454379efbdd0df5dbf2e" # encrypted value of your token
 
 script: 
     #- mvn cobertura:cobertura
