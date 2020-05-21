@@ -28,9 +28,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:mfathi91/persian-date-time.git</connection>
-        <developerConnection>scm:git:git@github.com:mfathi91/persian-date-time.git</developerConnection>
-        <url>https://github.com/oshi/oshi.git</url>
+        <connection>scm:git:git@github.com:flaviobeck/persian-date-time.git</connection>
+        <developerConnection>scm:git:git@github.com:flaviobeck/persian-date-time.git</developerConnection>
+        <url>https://github.com/flaviobeck/persian-date-time.git</url>
     </scm>
 
     <distributionManagement>
