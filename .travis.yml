@@ -13,9 +13,7 @@ install:
 - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 script:
-    - pwd 
     - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
-    - ls
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
@@ -23,15 +21,12 @@ after_success:
 notifications:
   slack: flaviobeck:U6kilEKFzgEH1EYC9JyM0goD
 
-before_deploy:
-  - cd target
-  - ls
-
 deploy:
   provider: releases
   api_key: $GH_TOKEN
   github_token: $GH_TOKEN
-  file: mutations.xml
+  file_glob: true
+  file: target/pit-reports/**/*
   overwrite: true
   skip_cleanup: true
   on:
