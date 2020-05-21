@@ -21,6 +21,5 @@ deploy:
   overwrite: true
   skip_cleanup: true
   on:
-    branch: snapshot
     tag: true
   
