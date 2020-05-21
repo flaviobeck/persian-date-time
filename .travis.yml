@@ -12,6 +12,13 @@ after_success:
     - bash <(curl -s https://codecov.io/bash)
 notifications:
   slack: flaviobeck:U6kilEKFzgEH1EYC9JyM0goD
+
+before_deploy:
+  - git config --local user.name "flaviobeck"
+  - git config --local user.email "flaviobeck@yahoo.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+  
 deploy:
   provider: releases
   api_key: $GH_TOKEN
@@ -20,6 +27,4 @@ deploy:
   file: target/pit-reports/**/*
   overwrite: true
   skip_cleanup: true
-  on:
-    tag: true
   
