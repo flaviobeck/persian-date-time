@@ -25,7 +25,7 @@ deploy:
   provider: releases
   api_key: $GH_TOKEN
   github_token: $GH_TOKEN
-  file: "mutations.xml"
+  file: "target/mutations.xml"
   overwrite: true
   skip_cleanup: true
   on:
