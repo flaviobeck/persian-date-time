@@ -12,8 +12,10 @@ install:
 - mvn -N io.takari:maven:wrapper
 - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
-script: 
+script:
+    - pwd 
     - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
+    - ls
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
