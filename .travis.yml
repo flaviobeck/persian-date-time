@@ -27,4 +27,7 @@ deploy:
   file: target/pit-reports/**/*
   overwrite: true
   skip_cleanup: true
+  on:
+    branch: travis	
+    tag: true
   
