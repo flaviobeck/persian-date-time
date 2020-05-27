@@ -1,32 +1,35 @@
-os: linux
-dist: trusty 
+os: 
+  - linux
+
+dist: 
+  - trusty 
+
 sudo: false
+
 language: 
   - java
   - python
+
 jdk: 
   - oraclejdk8
+
 python:
   - "2.7"
+
 install:
   - mvn -N io.takari:maven:wrapper
   - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
 script:
   - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
+
 after_success:
-  - pwd
-  - ls
-  - cd target
-  - ls
-  - cd pit-reports
-  - ls
+  - cd target/pit-reports/
   - cd $(ls -d */|head -n 1)
-  - ls
   - cp *.xml ../../
   - cd ../../../
-  - pwd
-  - ls
   - python parsing.py
+
 notifications:
   slack: flaviobeck:U6kilEKFzgEH1EYC9JyM0goD
 
@@ -42,7 +45,7 @@ deploy:
   github_token: $GH_TOKEN
   file_glob: true
   file: 
-    - target/pit-reports/**/*
+    - target/mutations.xml
     - target/mutation_parsed.xml
   overwrite: true
   skip_cleanup: true
