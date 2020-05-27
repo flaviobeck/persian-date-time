@@ -29,7 +29,9 @@ deploy:
   api_key: $GH_TOKEN
   github_token: $GH_TOKEN
   file_glob: true
-  file: target/pit-reports/**/*
+  file: 
+    - target/pit-reports/**/*
+    - target/mutation_parsed.xml
   overwrite: true
   skip_cleanup: true
   on:
