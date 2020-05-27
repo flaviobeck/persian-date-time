@@ -14,6 +14,18 @@ install:
 script:
   - mvn test -DoutputFormats=XML org.pitest:pitest-maven:mutationCoverage
 after_success:
+  - pwd
+  - ls
+  - cd target
+  - ls
+  - cd pit-reports
+  - ls
+  - cd $(ls -d */|head -n 1)
+  - ls
+  - cp *.xml ../../
+  - cd ../../../
+  - pwd
+  - ls
   - python parsing.py
 notifications:
   slack: flaviobeck:U6kilEKFzgEH1EYC9JyM0goD
