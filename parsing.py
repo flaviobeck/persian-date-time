@@ -29,11 +29,13 @@ for mutation in mutations:
     if status == 'SURVIVED':
 
         # Create an element for each succeeding
-        testList = succeedingTests.split("|")
+        succeeded = succeedingTests.split("|")
+        i = 1
 
-        for test in testList:
+        for stest in succeeded:
             # Add elements into new XML root
             _mutation = ET.SubElement(root, 'mutation', detected=detected, status=status, numberOfTestsRun=numberOfTestsRun)
+            ET.SubElement(_mutation, "counter").text = str(i)
             ET.SubElement(_mutation, "sourceFile").text = sourceFile
             ET.SubElement(_mutation, "mutatedClass").text = mutatedClass
             ET.SubElement(_mutation, "mutatedMethod").text = mutatedMethod
@@ -42,17 +44,23 @@ for mutation in mutations:
             ET.SubElement(_mutation, "mutator").text = mutator
             ET.SubElement(_mutation, "index").text = index
             ET.SubElement(_mutation, "block").text = block
-            ET.SubElement(_mutation, "killingTests").text = killingTests
-            ET.SubElement(_mutation, "succeedingTests").text = test
+            ET.SubElement(_mutation, "killingTests").text = 'none'
+            ET.SubElement(_mutation, "succeedingTests").text = stest
             ET.SubElement(_mutation, "description").text = description
+            i += 1
 
-    else:
-        # Create an element for each killing
-        testList = killingTests.split("|")
+    else: # Status = Killed
 
-        for test in testList:
+        # Create lists of killed and suceeded tests
+        killed = killingTests.split("|")
+        succeeded = succeedingTests.split("|")
+        i = 1
+
+        for ktest in killed:
+            
             # Add elements into new XML root
-            _mutation = ET.SubElement(root, 'mutation', detected=detected, status=status, numberOfTestsRun=numberOfTestsRun)
+            _mutation = ET.SubElement(root, 'mutation', detected='true', status='KILLED', numberOfTestsRun=numberOfTestsRun)
+            ET.SubElement(_mutation, "counter").text = str(i)
             ET.SubElement(_mutation, "sourceFile").text = sourceFile
             ET.SubElement(_mutation, "mutatedClass").text = mutatedClass
             ET.SubElement(_mutation, "mutatedMethod").text = mutatedMethod
@@ -61,9 +69,28 @@ for mutation in mutations:
             ET.SubElement(_mutation, "mutator").text = mutator
             ET.SubElement(_mutation, "index").text = index
             ET.SubElement(_mutation, "block").text = block
-            ET.SubElement(_mutation, "killingTests").text = test
-            ET.SubElement(_mutation, "succeedingTests").text = succeedingTests
+            ET.SubElement(_mutation, "killingTests").text = ktest
+            ET.SubElement(_mutation, "succeedingTests").text = 'none'
             ET.SubElement(_mutation, "description").text = description
+            i += 1
+        
+        i = 1
+        for stest in succeeded:
+            # Add elements into new XML root
+            _mutation = ET.SubElement(root, 'mutation', detected='false', status='SURVIVED', numberOfTestsRun=numberOfTestsRun)
+            ET.SubElement(_mutation, "counter").text = str(i)
+            ET.SubElement(_mutation, "sourceFile").text = sourceFile
+            ET.SubElement(_mutation, "mutatedClass").text = mutatedClass
+            ET.SubElement(_mutation, "mutatedMethod").text = mutatedMethod
+            ET.SubElement(_mutation, "methodDescription").text = methodDescription
+            ET.SubElement(_mutation, "lineNumber").text = lineNumber
+            ET.SubElement(_mutation, "mutator").text = mutator
+            ET.SubElement(_mutation, "index").text = index
+            ET.SubElement(_mutation, "block").text = block
+            ET.SubElement(_mutation, "killingTests").text = 'none'
+            ET.SubElement(_mutation, "succeedingTests").text = stest
+            ET.SubElement(_mutation, "description").text = description
+            i += 1
 
 # Write tree as new file
 tree = ET.ElementTree(root)
